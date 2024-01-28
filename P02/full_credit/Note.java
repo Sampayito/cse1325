@@ -15,7 +15,7 @@ public class Note {
 	}
 	@Override
 	public String toString() {
-		if (pitch.equals(null)) {
+		if (pitch == null) {
 			return " ";
 		}
 		if (octave == 0) {
