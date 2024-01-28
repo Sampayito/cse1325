@@ -4,7 +4,7 @@ public class Note {
 	Note() {
 		pitch = null;
 	}
-	Note(pitch, octave) {
+	Note(Pitch pitch, int octave) {
 		this.pitch = pitch;
 		if (octave < -5) {
 			this.octave = -5;
@@ -18,11 +18,11 @@ public class Note {
 		if (pitch.equals(null)) {
 			return " ";
 		}
-		if (octave.equals(0) {
-			return pitch;
+		if (octave == 0) {
+			return "" + pitch;
 		}
 		else {
-			return pitch + octave;
+			return "" + pitch + octave;
 		}
 	}
 	
