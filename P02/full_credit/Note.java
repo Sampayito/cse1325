@@ -12,6 +12,9 @@ public class Note {
 		else if (octave > 4) {
 			this.octave = 4;
 		}
+		else {
+			this.octave = octave;
+		}
 	}
 	@Override
 	public String toString() {
@@ -24,6 +27,5 @@ public class Note {
 		else {
 			return "" + pitch + octave;
 		}
-	}
-	
+	}	
 }
