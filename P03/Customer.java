@@ -5,7 +5,7 @@ public class Customer {
     public String Customer(String name, String email) {
         this.name = name;
         if (email.contains("@") && email.contains(".") && (email.indexOf("@") < email.lastIndexOf(".")) {
-            throw new IllegalArgumentException("Invalid email address: " + email)
+            throw new IllegalArgumentException("Invalid email address: " + email);
         }
         else {
             this.email = email;
