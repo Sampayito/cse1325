@@ -1,5 +1,5 @@
 public class Product {
-    private int nextStockNumber;
+    private static int nextStockNumber = 0;
     private int stockNumber;
     private String name;
     private int price;
@@ -8,7 +8,7 @@ public class Product {
         if (price < 0) {
             throw new IllegalArgumentException("Invalid price of " + name + ": " + price);
         }
-        //something with the nextStockNumber
+        stockNumber = nextStockNumber++;
         this.name = name;
         this.price = price;
     }
@@ -20,6 +20,10 @@ public class Product {
     }
     @Override
     String toString() {
-        return "" + name + " $ " + price;
+        name = String.format("%-30s", name);
+        int dollars = price / 100;
+        int cents = price % 100;
+        String pricestr = String.format("%5d.%02d", dollars, cents);
+        return name + " $ " + pricestr;
     }
 }
