@@ -19,7 +19,7 @@ public class Product {
         return price;
     }
     @Override
-    String toString() {
+    public String toString() {
         name = String.format("%-30s", name);
         int dollars = price / 100;
         int cents = price % 100;

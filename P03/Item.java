@@ -7,12 +7,13 @@ public class Item {
         this.quantity = quantity;
     }
     public int getPrice() {
-        return quantity * product.price;
+        return quantity * product.getPrice();
     }
     @Override
     public String toString() {
         String quantitystr = String.format("%3d", quantity);
-        product = String.format("-40s", product);
-        String itemprice = String.format("%") //finish this later, im tired
+        String productstr = String.format("%-40s", product);
+        String itemprice = String.format("%5d", getPrice());
+        return "" + quantitystr + " " + productstr + " $ " + itemprice;
     }
 }
