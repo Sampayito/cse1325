@@ -13,7 +13,10 @@ public class Item {
     public String toString() {
         String quantitystr = String.format("%3d", quantity);
         String productstr = String.format("%-40s", product);
-        String itemprice = String.format("%5d", getPrice());
+        int price = getPrice();
+        int dollars = price / 100;
+        int cents = price % 100;
+        String itemprice = String.format("%5d.%02d", dollars, cents);
         return "" + quantitystr + " " + productstr + " $ " + itemprice;
     }
 }
