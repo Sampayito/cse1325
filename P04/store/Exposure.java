@@ -1,3 +1,4 @@
+package store;
 public enum Exposure {
     SHADE("full shade"), PARTSUN("part sun / part shade"), SUN("full sun");
     private String string;

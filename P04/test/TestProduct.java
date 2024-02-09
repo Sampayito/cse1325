@@ -1,37 +1,43 @@
 package test;
 
-import store.Product;
+import store.Plant;
+import store.Tool;
+import store.Exposure;
 
 public class TestProduct {
     public static void main(String[] args) {
     	int failures = 0;
     	
-    	Product testProduct = new Product("Test Product", 512);
+    	Plant testPlant = new Plant("Test Product", 512, Exposure.SHADE);
     	//test 1
-    	if (testProduct.getStockNumber() != 0) {
-	    System.err.println("FAIL: First stock number is not 0 but " + testProduct.getStockNumber());
+    	if (testPlant.getStockNumber() != 0) {
+	    System.err.println("FAIL: First stock number is not 0 but " + testPlant.getStockNumber());
 	    failures++;
     	}
-    	Product testProduct2 = new Product("Test Product 2", 956);
-    	if (testProduct2.getStockNumber() != 1) {
-	    System.err.println("FAIL: Second stock number is not 1 but " + testProduct2.getStockNumber());
+    	Tool testTool = new Tool("Test Tool", 956);
+    	if (testTool.getStockNumber() != 1) {
+	    System.err.println("FAIL: Second stock number is not 1 but " + testTool.getStockNumber());
 	    failures++;
     	}
     	//test 2
-    	if (testProduct.getPrice() != 512) {
-    	    System.err.println("FAIL: Price not 512 but " + testProduct.getPrice());
+    	if (testPlant.getPrice() != 512) {
+    	    System.err.println("FAIL: Price not 512 but " + testPlant.getPrice());
+    	    failures++;
+    	}
+	if (testTool.getPrice() != 956) {
+    	    System.err.println("FAIL: Price not 956 but " + testTool.getPrice());
     	    failures++;
     	}
     	//test 3
     	String expectedString = "Cactus Cereus Peruvianus       $    49.90";
-    	Product testProduct3 = new Product("Cactus Cereus Peruvianus", 4990);
-    	if (!(expectedString.equals(testProduct3.toString()))){
-    	    System.err.println("FAIL: toString is not 'Cactus Cereus Peruvianus       $   49.90' but " + testProduct3);
+    	Tool testTool2 = new Tool("Cactus Cereus Peruvianus", 4990);
+    	if (!(expectedString.equals(testTool2.toString()))){
+    	    System.err.println("FAIL: toString is not 'Cactus Cereus Peruvianus       $   49.90' but " + testTool2);
     	    failures++;
     	}
     	
         try {
-            Product p1 = new Product("Negative Price", -8142);
+            Plant p1 = new Plant("Negative Price", -8142, Exposure.SUN);
             System.err.println("No exception thrown for negative price");
             failures++;
         } catch(IllegalArgumentException e) {
