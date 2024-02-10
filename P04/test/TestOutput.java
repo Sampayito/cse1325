@@ -4,6 +4,7 @@ import store.Customer;
 import store.Plant;
 import store.Item;
 import store.Exposure;
+import store.Order;
 
 public class TestOutput {
     public static void main(String[] args) {
@@ -31,6 +32,16 @@ public class TestOutput {
 
             System.out.println("And my order will include:\n  "
                              + i1 + "\n  " + i2 + "\n  "+ i3 + "\n  " + i4);
+	    
+	    Order o1 = new Order(c1);
+
+	    o1.addItem(i1);
+	    o1.addItem(i2);
+	    o1.addItem(i3);
+	    o1.addItem(i4);
+
+	    System.out.println(o1);    
+
         } catch(Exception e) {
             System.err.println("Failed to create and print objects: \n" + e);
         }
