@@ -22,7 +22,7 @@ public abstract class Product {
     }
     @Override
     public String toString() {
-        name = String.format("%-30s", name);
+        name = String.format("%-40s", name);
         int dollars = price / 100;
         int cents = price % 100;
         String pricestr = String.format("%5d.%02d", dollars, cents);

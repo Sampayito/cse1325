@@ -25,10 +25,14 @@ public class Order {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
+	int price = getPrice();
+	int dollars = price / 100;
+        int cents = price % 100;
+        String pricestr = String.format("%5d.%02d", dollars, cents);
         for (Item i: items) {
             sb.append(i.toString()).append("\n  ");
         }
-        return "Order #" + orderNumber + " for " + customer + "\n  " + sb + "\nOrder total $   " + getPrice();
+        return "Order #" + orderNumber + " for " + customer + "\n  " + sb + "\nOrder total $   " + pricestr;
     }
 }
 
