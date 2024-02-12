@@ -32,7 +32,7 @@ public class Order {
         for (Item i: items) {
             sb.append(i.toString()).append("\n  ");
         }
-        return "Order #" + orderNumber + " for " + customer + "\n  " + sb + "\nOrder total $   " + pricestr;
+        return "Order #" + orderNumber + " for " + customer + "\n  " + sb + "\nOrder total $" + pricestr;
     }
 }
 
