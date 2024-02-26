@@ -46,8 +46,16 @@ public class Store {
         return orders.indexOf(order);     
     }
     public addToOrder(int orderIndex, int productIndex, int quantity) {
-        
+        Product product = products.get(productIndex);
+        Item item = new Item(prodcut, quantity);
+        Order order = orders.get(orderIndex);
+        order.addItem(item);
     }
     public String getOrderList() {
-        
+        StringBuilder orderList = new StringBuilder();
+        for (int i = 0; i < orders.size(); i++) {
+            orderList.append(i).append("] ").append(orders.get(i).toString()).append("\n");
+        }
+        return orderList.toString();
     }
+}
