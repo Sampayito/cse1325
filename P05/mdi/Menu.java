@@ -1,4 +1,5 @@
 package mdi;
+import java.util.ArrayList;
 
 public class Menu {
     private ArrayList<MenuItem> items = new ArrayList<>();//items contains pairs of menu text and their associated run() methods

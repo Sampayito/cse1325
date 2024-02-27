@@ -1,7 +1,12 @@
 package mdi;
+
+enum View {
+    CUSTOMERS, PRODUCTS, ORDERS;
+}
+
 public class Controller {
     private Store store;
-    private View view; //enum?
+    private View view;
     private Menu mainMenu;
     private String output;
     private boolean isRunning = true;
@@ -37,20 +42,52 @@ public class Controller {
         isRunning = false;
     }
     private placeOrder() {
-        j
+        System.out.println(store.getCustomerList());
+        int customerIndex = getInt("Select customer placing the order: ");
+        int orderIndex = store.newOrder(customerIndex);
+        int productIndex;
+        while(productIndex != -1) {
+            System.out.println(store.getProductList());
+            productIndex = getInt("Select the product number (-1 to complete order): ");
+            int quantity = getInt("Enter quantity (-1 to select a different product): ");
+            store.addToOrder(orderIndex, productIndex, quantity);
+        }
     }
     private newCustomer() {
-        
+        String name = getString("Enter customer name: ");
+        String email = getString("Enter customer email: ");
+        store.addCustomer(new Customer(name, email);
+        System.out.println("Sucess!");
+        view = View.CUSTOMERS;
     }
     private newTool() {
+        String name = getString("Enter tool name: ");
+        int price = getInt("Enter tool price: ");
+        store.addProduct(new Tool(name, price);
+        System.out.println("Sucess!");
+        view = View.PRODUCTS;
     }
     private newPlant() {
+        String name = getString("Enter plant name: ");
+        System.out.println("Exposures available: " + Exposure.values());
+        String exposureString = getString("Enter plant exposure: ");
+        Exposure exposure = Exposure.valueOf(exposureString.toUpperCase());
+        int price = getInt("Enter plant price: ");
+        store.addProduct(new Plant(name, price, exposure);
+        System.out.println("Sucess!");
+        view = View.PRODUCTS;
     }
     private switchView() {
+        System.out.println("Available views: CUSTOMERS, PRODUCTS, ORDERS");
+        String selection = getString("Enter the view to switch to: ");
+        view = View.valueOf(selection.toUpperCase());
     }
     
     private String getView {
+        return view.name()
     }
+    
+    private static String clearScreen = "\n".repeat(250);
     private Integer selectFromMenu() {
         System.out.println(clearScreen + store.getName() + "\n\n" + mainMenu + '\n' + output);
         output = "";
