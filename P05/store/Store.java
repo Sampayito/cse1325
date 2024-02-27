@@ -13,11 +13,11 @@ public class Store {
         this.products = new ArrayList<>();
         this.orders = new ArrayList<>();
     }
-    public String getName{
+    public String getName() {
         return name;
     }
     
-    public addCustomer(Customer customer) {
+    public void addCustomer(Customer customer) {
         customers.add(customer);
     }
     public String getCustomerList() {
@@ -29,7 +29,7 @@ public class Store {
         return customerList.toString();
     }
     
-    public addProduct(Product product) {
+    public void addProduct(Product product) {
         products.add(product);
     }
     public String getProductList() {
@@ -46,9 +46,9 @@ public class Store {
         orders.add(order);
         return orders.indexOf(order);     
     }
-    public addToOrder(int orderIndex, int productIndex, int quantity) {
+    public void addToOrder(int orderIndex, int productIndex, int quantity) {
         Product product = products.get(productIndex);
-        Item item = new Item(prodcut, quantity);
+        Item item = new Item(product, quantity);
         Order order = orders.get(orderIndex);
         order.addItem(item);
     }

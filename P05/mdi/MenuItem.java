@@ -1,6 +1,6 @@
 package mdi;
 
-public class MenuItem implements Runnable { //runnable interface requires a run() method
+class MenuItem implements Runnable { //runnable interface requires a run() method
     private Object menuText;
     private Runnable menuResponse;
     
@@ -18,3 +18,4 @@ public class MenuItem implements Runnable { //runnable interface requires a run(
     public void run() {
         menuResponse.run();
     }
+}

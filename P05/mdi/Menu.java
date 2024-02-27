@@ -1,7 +1,7 @@
 package mdi;
 import java.util.ArrayList;
 
-public class Menu {
+class Menu {
     private ArrayList<MenuItem> items = new ArrayList<>();//items contains pairs of menu text and their associated run() methods
     
     public void addMenuItem(MenuItem item) { //add a menu item with associated run() method
@@ -14,7 +14,7 @@ public class Menu {
         for (int index = 0; index < items.size(); ++index) {
             sb.append("" + index + "] " + items.get(index) + "\n");
         }
-        return sb.toString()
+        return sb.toString();
     }
     
     public void run(int index) {
