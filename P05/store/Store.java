@@ -24,6 +24,7 @@ public class Store {
         StringBuilder customerList = new StringBuilder();
         for (int i = 0; i < customers.size(); i++) {
             customerList.append(i).append("] ").append(customers.get(i).toString()).append("\n");
+	    //could have just done customerList.append("" + i + "] " + ...)
         }
         return customerList.toString();
     }
