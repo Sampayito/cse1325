@@ -52,12 +52,54 @@ public class Controller {
     private String getView {
     }
     private Integer selectFromMenu() {
+        System.out.println(clearScreen + store.getName() + "\n\n" + mainMenu + '\n' + output);
+        output = "";
+        return getInt("Selection? ");
     }
     private print(String s) {
+        output += s + '\n';
     }
     private getString(String prompt) {
+        String s = null;
+        while(true) {
+            try{
+                System.out.print(prompt);
+                s = in.nextLine().trim(); //full line of user input
+                break;
+            }
+            catch(Exception e) {
+            }
+        return s;
     }
     private Integer getInt(String prompt) {
+        Integer i = null;
+        while(true) {
+            try {
+                String s = getString(prompt);
+                if(s != null && !s.isEmpty()) {
+                    i = Integer.parseInt(s);
+                }    
+                break;
+            }
+            catch(Exception e) {
+                System.err.println("Invalid Input!");
+            }
+        }
+        return i;
     }
     private Double getDouble(String prompt) {
+        Double d = null;
+        while(true) {
+            try {
+                String s = getString(prompt);
+                if(s != null && !s.isEmpty()) {
+                    d = Double.parseDouble(s);
+                }  
+                break;  
+            }
+            catch(Exception e) {
+                System.err.println("Invalid Input!");
+            }
+        }
+        return d;
     }
