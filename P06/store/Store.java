@@ -36,10 +36,12 @@ public class Store {
             else if(productType.equals("Tool")) {
                 products.add(new Tool(br));
             }
-            
         }
-            
-        
+        size = Integer.parseInt(br.readLine());
+        this.orders = new ArrayList<>();
+        while(size-- > 0) {
+            orders.add(new Order(br));
+        } 
     }
     
     public void save(BufferedWriter bw) throws IOException {
@@ -51,6 +53,10 @@ public class Store {
         for(Product p : products) {
             bw.write(p.getClass().getSimpleName() + "\n");
             p.save(bw);
+        }
+        bw.write("" + orders.size() + "\n");
+        for(Order o : orders) {
+            o.save(bw);
         }
     }
     

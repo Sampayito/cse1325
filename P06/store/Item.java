@@ -1,5 +1,11 @@
 package store;
 
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 public class Item {
     private Product product;
     private int quantity;
@@ -7,6 +13,21 @@ public class Item {
     public Item(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
+    }
+    public Item(BufferedReader br) throws IOException {
+        String productType = br.readLine();
+        if(productType.equals("Plant")) {
+            product = new Plant(br);
+        }
+        else if(productType.equals("Tool")) {
+            product = new Tool(br);
+        }
+        quantity = Integer.parseInt(br.readLine());
+    }
+    public void save(BufferedWriter bw) throws IOException {
+        bw.write(product.getClass().getSimpleName() + "\n");
+        product.save(bw);
+        bw.write(quantity + "\n");
     }
     public int getPrice() {
         return quantity * product.getPrice();

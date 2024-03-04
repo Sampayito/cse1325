@@ -1,6 +1,12 @@
 package store;
 import java.util.ArrayList;
 
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 /**
   * Encapsulation of a Customer and a set of items the Customer wants to buy.
   *
@@ -23,6 +29,27 @@ public class Order {
         orderNumber = nextOrderNumber++;
 	this.customer = customer;
 	this.items = new ArrayList<>();
+    }
+    
+    public Order(BufferedReader br) throws IOException {
+        int size = Integer.parseInt(br.readLine());
+        this.items = new ArrayList<>();
+        while(size-- > 0) {
+            items.add(new Item(br));
+        }
+        this.customer = new Customer(br); //FEEL LIKE A PROBLEM WILL OCCUR HERE
+        this.orderNumber = Integer.parseInt(br.readLine());
+        this.nextOrderNumber = Integer.parseInt(br.readLine());
+    }
+    
+    public void save(BufferedWriter bw) throws IOException {
+        bw.write("" + items.size() + "\n");
+        for(Item i : items) {
+            i.save(bw);
+        }
+        customer.save(bw);
+        bw.write(orderNumber + "\n");
+        bw.write(nextOrderNumber + "\n");
     }
 
 /**
