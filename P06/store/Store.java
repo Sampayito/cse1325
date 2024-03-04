@@ -29,7 +29,14 @@ public class Store {
         size = Integer.parseInt(br.readLine());
         this.products = new ArrayList<>();
         while(size-- > 0) {
-            products.add(new Product(br));
+            String productType = br.readLine();
+            if(productType.equals("Plant")) {
+                products.add(new Plant(br));
+            }
+            else if(productType.equals("Tool")) {
+                products.add(new Tool(br));
+            }
+            
         }
             
         
@@ -42,7 +49,7 @@ public class Store {
         }
         bw.write("" + products.size() + "\n");
         for(Product p : products) {
-            //bw.write(product.getClass().getSimpleName() + "\n");
+            bw.write(p.getClass().getSimpleName() + "\n");
             p.save(bw);
         }
     }
