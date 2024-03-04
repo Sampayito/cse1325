@@ -26,8 +26,8 @@ public class Customer {
     }
     
     public void save(BufferedWriter bw) throws IOException {
-        bw.write(name + "/n");
-        bw.write(email + "/n");
+        bw.write(name + "\n");
+        bw.write(email + "\n");
     }
     
     public String getName() {

@@ -32,11 +32,17 @@ public abstract class Product {
         bw.write(stockNumber + "\n");
         bw.write(nextStockNumber + "\n");
     }
+    public String getName() {
+        return name;
+    }
     public int getStockNumber() {
         return stockNumber;
     }
     public int getPrice() {
         return price;
+    }
+    public int getNextStockNumber() {
+        return nextStockNumber;
     }
     @Override
     public String toString() {

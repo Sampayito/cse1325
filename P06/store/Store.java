@@ -24,16 +24,26 @@ public class Store {
         int size = Integer.parseInt(br.readLine());
         this.customers = new ArrayList<>();
         while(size-- > 0) {
-            String name = br.readLine();
-            String email = br.readLine();
-            customers.add(new Customer(name, email)); //ERROR MAY OCCUR HERE
+            customers.add(new Customer(br));
         }
+        size = Integer.parseInt(br.readLine());
+        this.products = new ArrayList<>();
+        while(size-- > 0) {
+            products.add(new Product(br));
+        }
+            
+        
     }
     
     public void save(BufferedWriter bw) throws IOException {
         bw.write("" + customers.size() + "\n");
         for(Customer c : customers) {
-            bw.write("" + c.getName() + "\n" + c.getEmail() + "\n");
+            c.save(bw);
+        }
+        bw.write("" + products.size() + "\n");
+        for(Product p : products) {
+            //bw.write(product.getClass().getSimpleName() + "\n");
+            p.save(bw);
         }
     }
     
