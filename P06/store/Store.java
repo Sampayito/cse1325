@@ -1,6 +1,12 @@
 package store;
 import java.util.ArrayList;
 
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 public class Store {
     private String name;
     private ArrayList<Customer> customers;
@@ -13,6 +19,24 @@ public class Store {
         this.products = new ArrayList<>();
         this.orders = new ArrayList<>();
     }
+    
+    public Store(BufferedReader br) throws IOException {
+        int size = Integer.parseInt(br.readLine());
+        this.customers = new ArrayList<>();
+        while(size-- > 0) {
+            String name = br.readLine();
+            String email = br.readLine();
+            customers.add(new Customer(name, email)); //ERROR MAY OCCUR HERE
+        }
+    }
+    
+    public void save(BufferedWriter bw) throws IOException {
+        bw.write("" + customers.size() + "\n");
+        for(Customer c : customers) {
+            bw.write("" + c.getName() + "\n" + c.getEmail() + "\n");
+        }
+    }
+    
     public String getName() {
         return name;
     }

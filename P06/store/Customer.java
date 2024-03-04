@@ -1,5 +1,11 @@
 package store;
 
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 public class Customer {
     private String name;
     private String email;
@@ -13,6 +19,25 @@ public class Customer {
             this.email = email;
         }
     }
+    
+    public Customer(BufferedReader br) throws IOException {
+        this.name = br.readLine();
+        this.email = br.readLine();
+    }
+    
+    public void save(BufferedWriter bw) throws IOException {
+        bw.write(name + "/n");
+        bw.write(email + "/n");
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+    
     @Override
     public String toString() {
         return "" + name + " (" + email + ")";

@@ -7,6 +7,12 @@ import store.Exposure;
 import store.Plant;
 import store.Customer;
 
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 enum View {
     CUSTOMERS, PRODUCTS, ORDERS;
 }
@@ -18,6 +24,7 @@ public class Controller {
     private String output;
     private boolean isRunning = true;
     private Scanner in = new Scanner(System.in);
+    private String filename = "Untitled";
     
     public Controller(String storeName) {
         this.store = new Store(storeName);
@@ -30,6 +37,9 @@ public class Controller {
         mainMenu.addMenuItem(new MenuItem("Define new Tool", () -> newTool()));
         mainMenu.addMenuItem(new MenuItem("Define new Plant", () -> newPlant()));
         mainMenu.addMenuItem(new MenuItem("Switch View", () -> switchView()));
+        mainMenu.addMenuItem(new MenuItem("Open a file", () -> open()));
+        mainMenu.addMenuItem(new MenuItem("Save as", () -> saveAs()));
+        mainMenu.addMenuItem(new MenuItem("Save", () -> save()));
     }
     public void mdi() {
         while(isRunning){
@@ -106,6 +116,39 @@ public class Controller {
         System.out.println("Available views: CUSTOMERS, PRODUCTS, ORDERS");
         String selection = getString("Enter the view to switch to: ");
         view = View.valueOf(selection.toUpperCase());
+    }
+    
+    private void open() {
+        System.out.println("Enter a filename to open: ");
+        String s = in.nextLine();
+        if(!(s.isEmpty())) {
+            filename = s;
+        }
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            store = new Store(br);
+        }
+        catch (Exception e) {
+            System.err.println("Unable to read: " + e);
+        }
+    }
+    
+    private void saveAs() {
+        System.out.print("Enter a filename to save as: ");
+        String s = in.nextLine();
+        if(s.isEmpty()) {
+            return;
+        }
+        filename = s;
+        save();
+    }
+    
+    private void save() {
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
+            store.save(bw);
+        }
+        catch(Exception e) {
+            System.err.println("Unable to save: " + e);
+        }
     }
     
     private String getView() {
