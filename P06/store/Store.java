@@ -21,6 +21,7 @@ public class Store {
     }
     
     public Store(BufferedReader br) throws IOException {
+        this.name = br.readLine();
         int size = Integer.parseInt(br.readLine());
         this.customers = new ArrayList<>();
         while(size-- > 0) {
@@ -45,6 +46,7 @@ public class Store {
     }
     
     public void save(BufferedWriter bw) throws IOException {
+        bw.write(name + "\n");
         bw.write("" + customers.size() + "\n");
         for(Customer c : customers) {
             c.save(bw);

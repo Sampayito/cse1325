@@ -37,7 +37,7 @@ public class Order {
         while(size-- > 0) {
             items.add(new Item(br));
         }
-        this.customer = new Customer(br); //FEEL LIKE A PROBLEM WILL OCCUR HERE
+        this.customer = new Customer(br);
         this.orderNumber = Integer.parseInt(br.readLine());
         this.nextOrderNumber = Integer.parseInt(br.readLine());
     }

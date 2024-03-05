@@ -29,7 +29,7 @@ public class Controller {
     public Controller(String storeName) {
         this.store = new Store(storeName);
         this.output = "";
-        this.mainMenu = new Menu(); //?
+        this.mainMenu = new Menu();
         
         mainMenu.addMenuItem(new MenuItem("Exit", () -> exit())); //lambda converts a method into a Runnable object
         mainMenu.addMenuItem(new MenuItem("Place Order", () -> placeOrder()));
@@ -97,7 +97,8 @@ public class Controller {
     }
     private void newTool() {
         String name = getString("Enter tool name: ");
-        int price = getInt("Enter tool price: ");
+        double priceDouble = getDouble("Enter tool price: ");
+        int price = (int)(priceDouble * 100);
         store.addProduct(new Tool(name, price));
         System.out.println("Sucess!");
         view = View.PRODUCTS;
@@ -107,7 +108,8 @@ public class Controller {
         System.out.println("Exposures available: SHADE, PARTSUN, SUN");
         String exposureString = getString("Enter plant exposure: ");
         Exposure exposure = Exposure.valueOf(exposureString.toUpperCase());
-        int price = getInt("Enter plant price: ");
+        double priceDouble = getDouble("Enter plant price: ");
+        int price = (int)(priceDouble * 100);
         store.addProduct(new Plant(name, price, exposure));
         System.out.println("Sucess!");
         view = View.PRODUCTS;
