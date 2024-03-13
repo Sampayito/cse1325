@@ -49,7 +49,7 @@ This will require some experimentation.
 20.5   27994469914805964713410
 */
 
-public class Factor implements Runnable {
+public class Factor {
     public static List<PrimeFactors> solutions = new ArrayList<>();
     public static String[] bigints = null; // From main's args
     public static int numThreads = 1; 
@@ -73,15 +73,21 @@ public class Factor implements Runnable {
         int firstIdx = 0;
 
         for (int i = 0; i < numThreads; i++) {
-            int lastIdx = firstIdx + subRangeSize + (remainder > 0 ? 1 : 0);
-            threads[i] = new Thread(() -> solve(i, firstIdx, lastIdx));
+            final int threadIdx = i;
+            final int startIdx = firstIdx;
+            final int lastIdx = startIdx + subRangeSize + (remainder > 0 ? 1 : 0);
+            threads[i] = new Thread(() -> solve(threadIdx, startIdx, lastIdx));
             threads[i].start();
             firstIdx = lastIdx;
             remainder--;
         }
 
-        // Factor all of the big integers
-        solve(0, 0, bigints.length); 
+        for(int i = 0; i < numThreads; i++) {
+            try {
+                threads[i].join();
+            } catch(InterruptedException e) {
+            }
+        }
 
         // Print all solutions
         for(PrimeFactors solution : solutions)
