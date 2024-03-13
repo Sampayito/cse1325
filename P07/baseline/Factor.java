@@ -70,6 +70,15 @@ public class Factor implements Runnable {
         Thread[] threads = new Thread[numThreads];  //track the threads
         int subRangeSize = bigints.length / numThreads;
         int remainder = bigints.length % numThreads;
+        int firstIdx = 0;
+
+        for (int i = 0; i < numThreads; i++) {
+            int lastIdx = firstIdx + subRangeSize + (remainder > 0 ? 1 : 0);
+            threads[i] = new Thread(() -> solve(i, firstIdx, lastIdx));
+            threads[i].start();
+            firstIdx = lastIdx;
+            remainder--;
+        }
 
         // Factor all of the big integers
         solve(0, 0, bigints.length); 
