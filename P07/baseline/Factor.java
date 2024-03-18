@@ -103,7 +103,9 @@ public class Factor {
         for(int i=firstIndex; i<lastIndexPlusOne; ++i) {
             try {
                 PrimeFactors pf = new PrimeFactors(new BigInteger(bigints[i]));
-                solutions.add(pf);
+                synchronized (solutions) {
+                    solutions.add(pf);
+                }
             } catch (Exception e) {
                 System.err.println("Failed to solve " + bigints[i] + ": " + e);
             }
