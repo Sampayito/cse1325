@@ -1,5 +1,5 @@
-#ifndef __POLYNOMIAL_H
-#define __POLYNOMIAL_H
+#ifndef __LINEAR_H
+#define __LINEAR_H
 
 #include <iostream>
 #include <vector>
@@ -8,7 +8,7 @@ class Linear : public Polynomial {
   public:
     Linear(std::vector<double> coefficients);
     virtual ~Linear();
-    void solve() override;
+    std::vector<double> solve() override;
 };
 
 #endif
