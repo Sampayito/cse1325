@@ -14,5 +14,5 @@ std::vector<double> Linear::solve() {
     
     double solution = -b / a;
     
-    std::cout << "Solution: " << solution << std::endl;
+    return {solution};
 }

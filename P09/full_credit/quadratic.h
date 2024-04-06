@@ -3,7 +3,9 @@
 
 #include <iostream>
 #include <vector>
-#include <cmath> # sqrt
+#include <cmath>
+#include <exception>
+#include "polynomial.h"
 
 class Quadratic : public Polynomial {
   public:

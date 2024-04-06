@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <vector>
+#include <exception>
+#include "polynomial.h"
 
 class Linear : public Polynomial {
   public:
