@@ -3,8 +3,9 @@
 
 class Inch {
   public:
-    Inch();
     Inch(int whole, int numerator, int denominator);
+    Inch();
+    
     Inch operator+(const Inch& rhs);
     bool operator==(const Inch& rhs);
     bool operator!=(const Inch& rhs);
@@ -22,5 +23,3 @@ class Inch {
     int _numerator;
     int _denominator;
 };
-
-#endif
