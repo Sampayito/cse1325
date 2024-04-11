@@ -1,6 +1,9 @@
 #ifndef __INCH_H
 #define __INCH_H
 
+#include <iostream>
+#include <stdexcept>
+
 class Inch {
   public:
     Inch(int whole, int numerator, int denominator);
@@ -25,3 +28,5 @@ class Inch {
     int _numerator;
     int _denominator;
 };
+
+#endif

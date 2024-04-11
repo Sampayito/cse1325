@@ -1,6 +1,5 @@
 #include "inch.h"
 
-#include <stdexcept>
 #include <numeric>
 
 Inch::Inch(int whole, int numerator, int denominator) 
@@ -10,7 +9,11 @@ Inch::Inch(int whole, int numerator, int denominator)
 Inch::Inch() : Inch{0, 0, 2} {}
 
 Inch operator+(const Inch& rhs) {
-    
+    int common_denom = std::lcm(_denominator, rhs._denominator);
+    int new_num = _whole * _denominator + _numerator * (common_denom / _denominator);
+    int rhs_new_num = rhs._whole * rhs._denominator + rhs._numerator * (common_denom / rhs._denominator);
+    int total_num = new_num + rhs_new_num;
+    return Inch(total_num / common_denom, total_num % common_denom, common_denom);
 }
 
 
@@ -23,9 +26,13 @@ std::ostream& operator<<(std::ostream& ost, const Inch& inch) {
 std::istream& operator>>(std::istream& ist, Inch& inch) { //MIGHT BE WRONG
     ist >> inch._whole;
     ist >> inch._numerator;
-    ist >> "/";
+    char slash;
+    ist >> slash;
+    if (slash != '/') {
+        throw std::invalid_argument{"Invalid input"};
+    }
     ist >> inch._denominator;
-    validate();
+    inch.validate();
     return ist;
 }
 
