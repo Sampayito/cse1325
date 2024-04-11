@@ -7,16 +7,18 @@ class Inch {
     Inch();
     
     Inch operator+(const Inch& rhs);
-    bool operator==(const Inch& rhs);
-    bool operator!=(const Inch& rhs);
-    bool operator<(const Inch& rhs);
-    bool operator<=(const Inch& rhs);
-    bool operator>(const Inch& rhs);
-    bool operator>=(const Inch& rhs);
+    inline bool operator==(const Inch& rhs) {return (compare(rhs) == 0);}
+    inline bool operator!=(const Inch& rhs) {return (compare(rhs) != 0);}
+    inline bool operator<(const Inch& rhs) {return (compare(rhs) < 0);}
+    inline bool operator<=(const Inch& rhs) {return (compare(rhs) <= 0);}
+    inline bool operator>(const Inch& rhs) {return (compare(rhs) > 0);}
+    inline bool operator>=(const Inch& rhs) {return (compare(rhs) >= 0);}
+    
     friend std::ostream& operator<<(std::ostream& ost, const Inch& inch);
     friend std::istream& operator>>(std::istream& ist, Inch& inch);
+    
   private:
-    const int compare(const Inch& rhs);
+    int compare(const Inch& rhs) const;
     void validate();
   
     int _whole;

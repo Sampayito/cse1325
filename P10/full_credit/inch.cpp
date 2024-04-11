@@ -5,9 +5,15 @@
 
 Inch::Inch(int whole, int numerator, int denominator) 
     : _whole{whole}, _numerator{numerator}, _denominator{denominator} {
-    
+        validate();
     }
 Inch::Inch() : Inch{0, 0, 2} {}
+
+Inch operator+(const Inch& rhs) {
+    
+}
+
+
 
 std::ostream& operator<<(std::ostream& ost, const Inch& inch) {
     ost << inch._whole << " " << inch._numerator << "/" << inch._denominator;
@@ -23,6 +29,16 @@ std::istream& operator>>(std::istream& ist, Inch& inch) { //MIGHT BE WRONG
     return ist;
 }
 
+int Inch::compare(const Inch& rhs) const{
+    if(_whole < rhs._whole) return -1;
+    if(_whole > rhs._whole) return 1;
+    if(_numerator < rhs._numerator) return -1;
+    if(_numerator > rhs._numerator) return 1;
+    if(_denominator < rhs._denominator) return -1;
+    if(_denominator > rhs._denominator) return 1;
+    return 0;
+}
+
 void Inch::validate() {
     if (_denominator != 2 && _denominator != 4 && _denominator != 8 && 
     _denominator != 16 && _denominator != 32 && _denominator != 64) {
@@ -36,20 +52,3 @@ void Inch::validate() {
     _numerator /= gcd;
     _denominator /= gcd;
 }
-
-  public:
-    Inch();
-    Inch(int whole, int numerator, int denominator);
-    Inch operator+(const Inch& rhs);
-    bool operator==(const Inch& rhs);
-    bool operator!=(const Inch& rhs);
-    bool operator<(const Inch& rhs);
-    bool operator<=(const Inch& rhs);
-    bool operator>(const Inch& rhs);
-    bool operator>=(const Inch& rhs);
-    friend std::ostream& operator<<(std::ostream& ost, const Inch& inch);
-    friend std::istream& operator>>(std::istream& ist, Inch& inch);
-  private:
-    const int compare(const Inch& rhs);
-    void validate();
-};
