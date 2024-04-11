@@ -25,10 +25,11 @@ int main(int argc, char* argv[]) {
     }
     
     std::vector<double> roots = p->solve();
+    std::cout << "Root(s) are ";
     for (const auto& root : roots) {
-        std::cout << "Root(s) are " << root << std::endl;
+        std::cout << root << " ";
     }
-    
+    std::cout << std::endl;
     delete p;
     
     return 0;

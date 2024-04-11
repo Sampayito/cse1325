@@ -10,6 +10,9 @@ class Polynomial {
     Polynomial(std::vector<double> coefficients);
     virtual ~Polynomial();
     virtual std::vector<double> solve() = 0;
+    
+    friend class Linear;
+    friend class Quadratic;
 };
 
 #endif
