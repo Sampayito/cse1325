@@ -9,11 +9,10 @@ int main() {
             std::cout << "Enter one or more measurements (in inches): ";
             std::cin >> in;
 
-            sum = sum + in; // Add the entered Inch to the running total
+            sum = sum + in;
 
             std::cout << "You entered: " << in << std::endl;
             
-            //std::cout << "Comparison with the last entry:" << std::endl;
             if (in == last_in)
                 std::cout << "  Same length as last time!" << std::endl;
             if (in != last_in)

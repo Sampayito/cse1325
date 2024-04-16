@@ -23,7 +23,7 @@ std::ostream& operator<<(std::ostream& ost, const Inch& inch) {
     return ost;
 }
 
-std::istream& operator>>(std::istream& ist, Inch& inch) { //MIGHT BE WRONG
+std::istream& operator>>(std::istream& ist, Inch& inch) {
     ist >> inch._whole;
     ist >> inch._numerator;
     char slash;
