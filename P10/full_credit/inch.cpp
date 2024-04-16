@@ -8,10 +8,10 @@ Inch::Inch(int whole, int numerator, int denominator)
     }
 Inch::Inch() : Inch{0, 0, 2} {}
 
-Inch operator+(const Inch& rhs) {
+Inch Inch::operator+(const Inch& rhs) {
     int common_denom = std::lcm(_denominator, rhs._denominator);
-    int new_num = _whole * _denominator + _numerator * (common_denom / _denominator);
-    int rhs_new_num = rhs._whole * rhs._denominator + rhs._numerator * (common_denom / rhs._denominator);
+    int new_num = (_whole * _denominator + _numerator) * (common_denom / _denominator);
+    int rhs_new_num = (rhs._whole * rhs._denominator + rhs._numerator) * (common_denom / rhs._denominator);
     int total_num = new_num + rhs_new_num;
     return Inch(total_num / common_denom, total_num % common_denom, common_denom);
 }
@@ -37,12 +37,10 @@ std::istream& operator>>(std::istream& ist, Inch& inch) { //MIGHT BE WRONG
 }
 
 int Inch::compare(const Inch& rhs) const{
-    if(_whole < rhs._whole) return -1;
-    if(_whole > rhs._whole) return 1;
-    if(_numerator < rhs._numerator) return -1;
-    if(_numerator > rhs._numerator) return 1;
-    if(_denominator < rhs._denominator) return -1;
-    if(_denominator > rhs._denominator) return 1;
+	double this_value = static_cast<double>(_whole) + static_cast<double>(_numerator) / static_cast<double>(_denominator);
+	double rhs_value = static_cast<double>(rhs._whole) + static_cast<double>(rhs._numerator) / static_cast<double>(rhs._denominator);
+    if (this_value < rhs_value) return -1;
+    if (this_value > rhs_value) return 1;
     return 0;
 }
 
@@ -55,7 +53,7 @@ void Inch::validate() {
         _numerator -= _denominator;
         _whole++;
     }
-    int gcd = std:gcd(_numerator, _denominator);
+    int gcd = std::gcd(_numerator, _denominator);
     _numerator /= gcd;
     _denominator /= gcd;
 }
