@@ -34,4 +34,6 @@ class University {
     void validate();
     std::string _name;
     int _enrollment;
-}
+};
+
+#endif
