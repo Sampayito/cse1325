@@ -26,7 +26,7 @@ int main (int argc, char* argv[]) {
     
     while(ifs >> state >> university) {
         if (university_map.find(state) == university_map.end()) {
-            university_map.insert(std::make_pair(state, university));
+            university_map[state] = Universities(); //construcs empty vector with default constructor
         }
         university_map[state].push_back(university);
     }
@@ -40,6 +40,15 @@ int main (int argc, char* argv[]) {
             break;
         }
         
-        
+        auto it = std::find(university_map.begin(), university_map.end(), userInput);
+        if (it == university_map.end()) {
+            std::cout << "No universities found in " << userInput << std::endl;
+        } else {
+            for (const auto& univ : it->second) { //->second gives value from map
+                std::cout << univ << std::endl; 
+            }
+        }       
     }
+    
+    return 0;
 }

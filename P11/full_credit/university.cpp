@@ -24,7 +24,7 @@ std::ostream& operator<<(std::ostream& ost, const University& reading) {
 }
 
 void University::validate() {
-    if (_enrollemnt < 0) {
+    if (_enrollment < 0) {
         throw std::invalid_argument("University enrollment cannot be negative");
     }
     if (_enrollment > 0 && _name.length() == 0) {

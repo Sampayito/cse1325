@@ -7,23 +7,13 @@ class University {
   public:
     University(std::string name = "", int enrollment = 0);
     
-    std::string name() const {
-        return _name;
-    }
+    std::string name() const;
     
-    int enrollment() const {
-        return _enrollment;
-    }
+    int enrollment() const;
     
-    std::istream& operator>>(std::istream& ist, University& reading) {
-        ist >> reading._name >> reading._enrollment;
-        reading.validate();
-        return ist;
-    }
+    std::istream& operator>>(std::istream& ist, University& reading);
     
-    std::ostream& operator<<(std::ostream& ost, const University& reading) {
-        return ost << _name << " has an enrollment of " << _enrollment;
-    }
+    std::ostream& operator<<(std::ostream& ost, const University& reading);
     
     std::string name() const;
     int enrollment() const;
