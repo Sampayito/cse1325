@@ -14,7 +14,9 @@ int University::enrollment() const {
 }
     
 std::istream& operator>>(std::istream& ist, University& reading) {
-    ist >> reading._name >> reading._enrollment;
+    ist >> std::ws;
+    std::getline(ist, reading._name);
+    ist >> reading._enrollment;
     reading.validate();
     return ist;
 }

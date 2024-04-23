@@ -24,7 +24,13 @@ int main (int argc, char* argv[]) {
     State state;
     University university;
     
-    while(ifs >> state >> university) {
+    while(ifs >> state) {
+        ifs >> university;
+        
+        //std::cout << "State: " << state << std::endl;
+        //std::cout << "University: " << university.name() << std::endl;
+        //std::cout << "Enrollment: " << university.enrollment() << std::endl;
+    
         if (university_map.find(state) == university_map.end()) {
             university_map[state] = Universities(); //construcs empty vector with default constructor
         }
@@ -47,7 +53,8 @@ int main (int argc, char* argv[]) {
             for (const auto& univ : it->second) { //->second gives value from map
                 std::cout << univ << std::endl; 
             }
-        }       
+        }
+        std::cout << std::endl;       
     }
     
     return 0;
