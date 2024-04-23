@@ -40,7 +40,7 @@ int main (int argc, char* argv[]) {
             break;
         }
         
-        auto it = std::find(university_map.begin(), university_map.end(), userInput);
+        auto it = university_map.find(userInput);
         if (it == university_map.end()) {
             std::cout << "No universities found in " << userInput << std::endl;
         } else {
