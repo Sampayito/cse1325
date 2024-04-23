@@ -5,7 +5,7 @@
 
 class University {
   public:
-    University(std::string name, int enrollment);
+    University(std::string name = "", int enrollment = 0);
     
     std::string name() const {
         return _name;

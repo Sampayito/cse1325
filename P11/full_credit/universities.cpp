@@ -1,22 +1,45 @@
 #include "university.h"
+#include <vector>
+#include <map>
+#include <fstream>
 
-std::string State;
+typedef std::string State;
 typedef std::vector<University> Universities;
 
 int main (int argc, char* argv[]) {
     if (argc != 2) {
-        std::err << "usage: ./universities enrollment.txt" << std::endl;
+        std::cerr << "usage: ./universities enrollment.txt" << std::endl;
         exit(-1);
     }
     
-    std::ifstream ifs;
-    std::string infile = std::string{argv[1]};
-    ifs = std::ifstream{infile};
-    
+    std::string file{argv[1]};
+    std::ifstream ifs{file};
     if (!ifs) {
-        std::cerr << infile << ": file not found" << std::endl;
+        std::cerr << file << ": file not found" << std::endl;
         exit(-2);
     }
     
-    std::map<State, Universities> _map;
+    std::map<State, Universities> university_map;
+    
+    State state;
+    University university;
+    
+    while(ifs >> state >> university) {
+        if (university_map.find(state) == university_map.end()) {
+            university_map.insert(std::make_pair(state, university));
+        }
+        university_map[state].push_back(university);
+    }
+    
+    std::string userInput;
+    while (true) {
+        std::cout << "Which state (2-character abbreviation): ";
+        std::getline(std::cin, userInput);
+        
+        if (userInput.empty()) {
+            break;
+        }
+        
+        
+    }
 }
